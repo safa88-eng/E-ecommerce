@@ -15,35 +15,36 @@ export default function Register() {
             console.log("hello from formik",values);
             
           },
-          validate:function(values)
-          {
-             const errors={}
-             const nameRegx=/^[A-Z][a-z]{3,8}$/;
-             const phoneRegex=/^(20)?01[0125][0-9]{8}$/;
-             if (! nameRegx.test(values.name))
-             {
-              errors.name="name must start with capital Name";
-             }
-             if (! phoneRegex.test(values.phone))
-             {
-              errors.phone="phone must be Egyptain nuber";
-             }
-             if(!(values.email.includes('@')||values.email.includes('.')))
-             {
-              errors.email='Invalid Email'
-             }
-             if(values.password.length<6||values.password.length>12)
-             {
-              errors.password="password must be from 6 to 12 character";
-             }
-             if (values.password!==values.repassword)
-             {
-              errors.repassword="password and rePassword doesn't match";
-             }
+          // validate:function(values)
+          // {
+          //    const errors={}
+          //    const nameRegx=/^[A-Z][a-z]{3,8}$/;
+          //    const phoneRegex=/^(20)?01[0125][0-9]{8}$/;
+          //    if (! nameRegx.test(values.name))
+          //    {
+          //     errors.name="name must start with capital Name";
+          //    }
+          //    if (! phoneRegex.test(values.phone))
+          //    {
+          //     errors.phone="phone must be Egyptain nuber";
+          //    }
+          //    if(!(values.email.includes('@')||values.email.includes('.')))
+          //    {
+          //     errors.email='Invalid Email'
+          //    }
+          //    if(values.password.length<6||values.password.length>12)
+          //    {
+          //     errors.password="password must be from 6 to 12 character";
+          //    }
+          //    if (values.password!==values.repassword)
+          //    {
+          //     errors.repassword="password and rePassword doesn't match";
+          //    }
             
             
-            return errors;
-          }
+          //   return errors;
+          // }
+          validationSchema
         }
     );
   return (
