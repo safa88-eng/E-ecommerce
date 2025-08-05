@@ -1,5 +1,6 @@
 import { useFormik } from 'formik'
 import React from 'react'
+import * as yup from 'yup';
 
 export default function Register() {
   const registerFormik=  useFormik(
@@ -12,39 +13,47 @@ export default function Register() {
             phone:'',
           },
           onSubmit:function(values){
-            console.log("hello from formik",values);
+            console.log("hello from formik",values); 
             
           },
-          validate:function(values)
-          {
-             const errors={}
-             const nameRegx=/^[A-Z][a-z]{3,8}$/;
-             const phoneRegex=/^(20)?01[0125][0-9]{8}$/;
-             if (! nameRegx.test(values.name))
-             {
-              errors.name="name must start with capital Name";
-             }
-             if (! phoneRegex.test(values.phone))
-             {
-              errors.phone="phone must be Egyptain nuber";
-             }
-             if(!(values.email.includes('@')||values.email.includes('.')))
-             {
-              errors.email='Invalid Email'
-             }
-             if(values.password.length<6||values.password.length>12)
-             {
-              errors.password="password must be from 6 to 12 character";
-             }
-             if (values.password!==values.repassword)
-             {
-              errors.repassword="password and rePassword doesn't match";
-             }
+          // validate:function(values)
+          // {
+          //    const errors={}
+          //    const nameRegx=/^[A-Z][a-z]{3,8}$/;
+          //    const phoneRegex=/^(20)?01[0125][0-9]{8}$/;
+          //    if (! nameRegx.test(values.name))
+          //    {
+          //     errors.name="name must start with capital Name";
+          //    }
+          //    if (! phoneRegex.test(values.phone))
+          //    {
+          //     errors.phone="phone must be Egyptain nuber";
+          //    }
+          //    if(!(values.email.includes('@')||values.email.includes('.')))
+          //    {
+          //     errors.email='Invalid Email'
+          //    }
+          //    if(values.password.length<6||values.password.length>12)
+          //    {
+          //     errors.password="password must be from 6 to 12 character";
+          //    }
+          //    if (values.password!==values.repassword)
+          //    {
+          //     errors.repassword="password and rePassword doesn't match";
+          //    }
             
             
-            return errors;
-          }
-          // validationSchema
+          //   return errors;
+          // }
+          validationSchema:yup.object().shape(
+            {
+              name:yup.string().required("name is required").min(3,"min must be 3 characters").max(12,"min must be 3 characters"),
+              phone:yup.string().required('phone is required').matches(/^01[0125][0-9]{8}$/),
+              email:yup.string().required().email('invailed value'),
+              password:yup.string().min(6).max(12).required(),
+              repassword:yup.string().oneOf([yup.ref('password')],"password and rePassword doesn't match"),
+            }
+          )
         }
     );
   return (
