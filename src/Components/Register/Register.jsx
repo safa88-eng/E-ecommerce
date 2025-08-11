@@ -1,14 +1,22 @@
 import axios from 'axios';
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+import {ColorRing} from 'react-loader-spinner'
 
 export default function Register() {
   
+  const[errorMessage,setErrorMessage]=useState(null);
+  const[isSuccess,setIsSuccess]=useState(false);
+  const[isClicked,setIsClicked]=useState(false);
+
+  const navigate=useNavigate();
+
   // const [loading, setLoading] = useState(false);
   // const [serverMessage, setServerMessage] = useState(null);
 async function registerUser(values) {
-  
+  setIsClicked(true);
 // try{
 //       const { data } = await axios.post("https://tarmeezacademy.com/api/v1/register", values,
 //        {headers: {
@@ -29,11 +37,19 @@ async function registerUser(values) {
       'Content-Type': 'application/json'
     }} 
     ).then(function(x){
-        console.log('sa7',x);
-        
+      setIsSuccess(true)
+      setIsClicked(false);
+
+        setTimeout(()=>{
+navigate('/Login')
+        },2000)
     })
     .catch(function(x){
-       console.log('8lt',x);
+       setErrorMessage(x.response.data.message);
+       setIsClicked(false);
+       setTimeout(()=>{
+        setErrorMessage(null)
+       },2000)
        
     });
   
@@ -94,6 +110,12 @@ async function registerUser(values) {
   return (
     <>
      <div className='p-5'>
+        {isSuccess?<div className="p-4 mb-4 text-sm text-black-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+         Congratulation
+            </div>:''}
+      {errorMessage?<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+         {errorMessage}
+            </div>:''}   
         <h2 className='text-center'>Register Now</h2>
       <form onSubmit={registerFormik.handleSubmit} className="max-w-md mx-auto">
          <div className="relative z-0 w-full mb-5 group">
@@ -140,7 +162,19 @@ async function registerUser(values) {
 </div>:''}
     </div>
 
-  <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+  <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+   {!isClicked? 'Submit': <ColorRing
+  visible={true}
+  height="40"
+  width="40"
+  ariaLabel="color-ring-loading"
+  wrapperStyle={{}}
+  wrapperClass="color-ring-wrapper"
+  colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+  />}
+
+   
+  </button>
 </form>
      </div>
 
