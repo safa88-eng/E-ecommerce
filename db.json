@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "cf17",
+      "name": "Safa",
+      "email": "safaayman632@gmail.com",
+      "password": "1234567",
+      "repassword": "1234567",
+      "phone": "01156334879"
+    },
+    {
+      "id": "f622",
+      "name": "Safa",
+      "email": "safaayman632@gmail.com",
+      "password": "1234567",
+      "repassword": "1234567",
+      "phone": "01156334879"
+    },
+    {
+        "username":"yarob",
+        "password":123456,
+        "email":"yarob.hm@gmail.com"
+    }
+  ]
+}

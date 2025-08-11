@@ -9,11 +9,13 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "server": "json-server --watch db.json --port 5000",
     "preview": "vite preview"
   },
   "homepage": "https://safa88-eng.github.io/E-ecommerce",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
+    "axios": "^1.11.0",
     "formik": "^2.4.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
