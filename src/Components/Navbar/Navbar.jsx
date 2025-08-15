@@ -28,10 +28,10 @@ export default function Navbar() {
         </ul>
         <ul className='flex items-center space-x-4'>
             <li>
-                <NavLink>Register</NavLink>
+                <NavLink to='/register'>Register</NavLink>
             </li>
              <li>
-                <NavLink>Login</NavLink>
+                <NavLink to='/Login'>Login</NavLink>
             </li>
              <li>
                 <span>Logout</span>
