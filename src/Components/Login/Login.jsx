@@ -31,7 +31,7 @@ async function loginUser(values) {
   
 
 // }
-  axios.post('https://dummyjson.com/auth/login', values,
+  axios.post('https://tarmeezacademy.com/api/v1/login', values,
        {headers: {
       // Authorization: 'Bearer Token',
       'Content-Type': 'application/json'
